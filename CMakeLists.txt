@@ -13,6 +13,10 @@ else()
     add_compile_options(-Wall -Wextra -Wpedantic)
 endif()
 
+# 必须在add_library ， add_executable 前设置，否则无效
+add_compile_options("$<$<C_COMPILER_ID:MSVC>:/utf-8>")  # 对于C语言
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8>") # 对于C++语言
+
 # 设置编译输出目录
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR})
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR})
